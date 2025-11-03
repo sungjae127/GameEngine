@@ -41,21 +41,25 @@ public class PlayerController : MonoBehaviour
     // 바닥 충돌 감지 (Collision)
     void OnCollisionEnter2D(Collision2D collision)
     {
-        // 바닥 충돌 감지 (기존 코드)
         if (collision.gameObject.CompareTag("Ground"))
         {
             isGrounded = true;
         }
-        // 장애물 충돌 감지 - 새로 추가!
+        // 장애물 충돌 시 생명 감소로 변경!
         if (collision.gameObject.CompareTag("Obstacle"))
         {
-            Debug.Log("⚠️ 장애물 충돌! 시작 지점으로 돌아갑니다.");
-
-            // 시작 위치로 순간이동
+            Debug.Log("⚠️ 장애물 충돌! 생명 -1");
+            // GameManager 찾아서 생명 감소
+            GameManager gameManager = FindObjectOfType<GameManager>();
+            
+            if (gameManager != null)
+            {
+                gameManager.TakeDamage(1);  // 생명 1 감소
+            }
+            
+            // 짧은 무적 시간 (0.5초 후 원래 위치로)
             transform.position = startPosition;
-
-            // 속도 초기화 (안 하면 계속 날아감)
-            rb.linearVelocity = new Vector2(0, 0);
+            rb.velocity = Vector2.zero;
         }
     }
     void OnCollisionExit2D(Collision2D collision)
