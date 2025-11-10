@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour
             
             // 짧은 무적 시간 (0.5초 후 원래 위치로)
             transform.position = startPosition;
-            rb.velocity = Vector2.zero;
+            rb.linearVelocity = Vector2.zero;
         }
     }
     void OnCollisionExit2D(Collision2D collision)
