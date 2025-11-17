@@ -49,8 +49,11 @@ TagManager:
   - name: Background
     uniqueID: 3522715411
     locked: 0
-  - name: Environment
+  - name: Midground
     uniqueID: 2814378601
+    locked: 0
+  - name: Foreground
+    uniqueID: 2953320817
     locked: 0
   - name: Characters
     uniqueID: 3190849967
